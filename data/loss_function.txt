@@ -1,0 +1,5 @@
+-,recall,0.5
++,ratio_of_active_rules,0.1
+%<,fpr,0.0075145
++,ratio_of_transactions_sent_to_review,0.4
+%-,precision,0.00

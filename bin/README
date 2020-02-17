@@ -1,0 +1,87 @@
+----------------------------------------------------
+License
+
+This software is released for non-commercial purposes under the "Apache LicenseVersion 2.0". See the file "LICENSE" for more details.
+
+All commercial uses are prohibited.
+
+----------------------------------------------------
+
+-------------------------------------
+Short manual
+
+1)
+MANDATORY PARAMETERS:
+ bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m [METHOD <METHOD_PARAMETERS>]
+ALL PARAMETERS:
+ bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m [METHOD <METHOD_PARAMETERS>] <-seed X> <-tdf [TEST_DATASOURCE_FILE]> <-quiet> <-ipcp PROB_PRIO_SHUFFLE_CONF> <-gpcp PROB_PRIO_SHUFFLE_RULE> <-lff LOSS_FILE>
+-------------------------------------
+
+-------------------------------------
+2)
+OPTIMIZATION STRATEGIES
+ RANDOM SEARCH
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m random -rr [NUMBER_OF_RANDOM_RUNS] -sp [RULE_SHUTOFF_PROBABILITY]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m random -rr 5 -sp 0.5 -seed 42
+
+ GENETIC ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m genetic -nr [NUMBER_OF_RUNS] -ps [POPULATION SIZE] -tps [TOP_PERCENT_SURVIVORS] -mp [RANDOM_MUTATION_PROBABILITY]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m genetic -nr 5 -ps 10 -tps 0.2 -mp 0.1 -seed 42
+
+ GREEDY ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m greedy -mr [MAX_RULES]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m greedy -mr 100 -seed 42
+-------------------------------------
+
+-------------------------------------
+3)
+OPTIMIZATION STRATEGIES + RULE PRIORITY SHUFFLE
+ RANDOM SEARCH
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m random -rr [NUMBER_OF_RANDOM_RUNS] -sp [RULE_SHUTOFF_PROBABILITY] -icpc [PROB_PRIO_SHUFFLE_CONF] -gpcp [PROB_PRIO_SHUFFLE_RULE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m random -rr 5 -sp 0.5 -seed 42 -icpc 0.2 -gpcp 0.2
+
+ GENETIC ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m genetic -nr [NUMBER_OF_RUNS] -ps [POPULATION SIZE] -tps [TOP_PERCENT_SURVIVORS] -mp [RANDOM_MUTATION_PROBABILITY] -icpc [PROB_PRIO_SHUFFLE_CONF] -gpcp [PROB_PRIO_SHUFFLE_RULE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m genetic -nr 5 -ps 10 -tps 0.2 -mp 0.1 -seed 42 -icpc 0.2 -gpcp 0.2
+-------------------------------------
+
+-------------------------------------
+4)
+CHANGING THE LOSS FILE
+ RANDOM SEARCH
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m random -rr [NUMBER_OF_RANDOM_RUNS] -sp [RULE_SHUTOFF_PROBABILITY] -lff [LOSS_FILE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m random -rr 5 -sp 0.5 -seed 42 -lff loss_function_templates/default_loss_function.txt
+
+ GENETIC ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m genetic -nr [NUMBER_OF_RUNS] -ps [POPULATION SIZE] -tps [TOP_PERCENT_SURVIVORS] -mp [RANDOM_MUTATION_PROBABILITY] -lff [LOSS_FILE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m genetic -nr 5 -ps 10 -tps 0.2 -mp 0.1 -seed 42 -lff loss_function_templates/default_loss_function.txt
+
+ GREEDY ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m greedy -mr [MAX_RULES] -lff [LOSS_FILE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m greedy -mr 100 -seed 42 -lff loss_function_templates/default_loss_function.txt
+-------------------------------------
+
+-------------------------------------
+5)
+TRAIN + TEST
+ RANDOM SEARCH
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m random -rr [NUMBER_OF_RANDOM_RUNS] -sp [RULE_SHUTOFF_PROBABILITY] -tdf [TEST_DATASOURCE_FILE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m random -rr 5 -sp 0.5 -seed 42 -tdf data/sample_test.csv
+
+ GENETIC ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m genetic -nr [NUMBER_OF_RUNS] -ps [POPULATION SIZE] -tps [TOP_PERCENT_SURVIVORS] -mp [RANDOM_MUTATION_PROBABILITY] -tdf [TEST_DATASOURCE_FILE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m genetic -nr 5 -ps 10 -tps 0.2 -mp 0.1 -seed 42 -tdf data/sample_test.csv
+
+ GREEDY ALGORITHM
+	Usage  : bin/ARMS -df [DATASOURCE_FILE] -pr [PRIORITIES_FILE] -m greedy -mr [MAX_RULES] -tdf [TEST_DATASOURCE_FILE]
+	Example: bin/ARMS -df data/sample.csv -pr data/Priorities.csv -m greedy -mr 100 -seed 42 -tdf data/sample_test.csv
+-------------------------------------
+
+-------------------------------------
+Compiled using g++
+    COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+    OFFLOAD_TARGET_NAMES=nvptx-none
+    OFFLOAD_TARGET_DEFAULT=1
+    Target: x86_64-linux-gnu
+    Thread model: posix
+    gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
